@@ -1,31 +1,54 @@
+#include "entrypoint.h"
+
 #include "intmanager.h"
+
+#include <windows.h>
 
 #include <iostream>
 
-#ifdef _DEBUG
-#define _CRTDBG_MAP_ALLOC
-#include <stdlib.h>
-#include <crtdbg.h>
-#endif
-
-int main()
+class CustomApp : public FlexEngine::Application
 {
-#ifdef _DEBUG
-  _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-#endif
-
   IntManager int_manager;
-  int_manager.Init();
+  HMODULE hModule;
+  typedef void (*FunctionType)();
 
-  int* object_a = new int(10);
+public:
+  CustomApp()
+  {
+    int_manager.Init();
 
-  int_manager.SetActiveObject(object_a);
-  int* active_object = IntManager::GetActiveObject();
-  std::cout << "Active object: " << *active_object << std::endl;
-  int_manager.Shutdown();
+    // run dll
+    hModule = LoadLibraryA("scripting-project.dll");
+    if (!hModule)
+    {
+      std::cout << "Failed to load DLL." << std::endl;
+      return;
+    }
 
-  delete object_a;
-  object_a = nullptr;
+    FunctionType myFunction = (FunctionType)GetProcAddress(hModule, "Start");
+    if (!myFunction)
+    {
+      std::cout << "Failed to locate the function in the DLL." << std::endl;
+      FreeLibrary(hModule);
+      return;
+    }
 
-  return 0;
+    std::cout << "Calling the function in the DLL..." << std::endl;
+    myFunction();
+    std::cout << "Function call completed." << std::endl;
+  }
+
+  ~CustomApp()
+  {
+    int_manager.Shutdown();
+    FreeLibrary(hModule);
+  }
+};
+
+namespace FlexEngine
+{
+  Application* CreateApplication()
+  {
+    return new CustomApp();
+  }
 }

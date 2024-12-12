@@ -12,9 +12,18 @@
     <ClInclude Include="src\intmanager.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\entrypoint.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\application.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\intmanager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\application.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

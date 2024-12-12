@@ -3,6 +3,7 @@
 // static member initialization
 bool IntManager::is_init = false;
 int* IntManager::active_object = nullptr;
+std::unordered_map<std::string, int*> IntManager::registry;
 
 IntManager::~IntManager()
 {
@@ -38,4 +39,51 @@ void IntManager::SetActiveObject(int* object)
 {
   if (!is_init) return;
   active_object = object;
+}
+
+int* IntManager::CreateObject(const std::string& name)
+{
+  if (!is_init) return nullptr;
+  if (registry.find(name) != registry.end()) return nullptr;
+  int* object = new int;
+  registry[name] = object;
+  return object;
+}
+
+void IntManager::DestroyObject(const std::string& name)
+{
+  if (!is_init) return;
+  auto it = registry.find(name);
+  if (it == registry.end()) return;
+  delete it->second;
+  registry.erase(it);
+}
+
+void IntManager::DestroyObject(int* object)
+{
+  if (!is_init) return;
+  for (auto it = registry.begin(); it != registry.end(); ++it)
+  {
+    if (it->second == object)
+    {
+      delete it->second;
+      registry.erase(it);
+      return;
+    }
+  }
+}
+
+int* IntManager::GetObject(const std::string& name)
+{
+  if (!is_init) return nullptr;
+  auto it = registry.find(name);
+  if (it == registry.end()) return nullptr;
+  return it->second;
+}
+
+void IntManager::ChangeValue(int value)
+{
+  if (!is_init) return;
+  if (active_object == nullptr) return;
+  *active_object = value;
 }
