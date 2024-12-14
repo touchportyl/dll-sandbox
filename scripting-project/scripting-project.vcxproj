@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\componenttest.cpp" />
+    <ClCompile Include="src\ecstest.cpp" />
     <ClCompile Include="src\intmanagertest.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

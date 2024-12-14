@@ -7,6 +7,9 @@
     <Filter Include="src\Reflection">
       <UniqueIdentifier>{4a6750e2-20e7-4895-a98f-52820afff4f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\FlexECS">
+      <UniqueIdentifier>{27aae49a-e7a4-4c32-b4f1-589f29a840ce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\flx_api.h">
@@ -33,6 +36,9 @@
     <ClInclude Include="src\scriptregistry.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\FlexECS\datastructures.h">
+      <Filter>src\FlexECS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\intmanager.cpp">
@@ -50,5 +56,22 @@
     <ClCompile Include="src\scriptregistry.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\FlexECS\datastructures.cpp">
+      <Filter>src\FlexECS</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FlexECS\entity.cpp">
+      <Filter>src\FlexECS</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FlexECS\scene.cpp">
+      <Filter>src\FlexECS</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\FlexECS\entity.inl">
+      <Filter>src\FlexECS</Filter>
+    </None>
+    <None Include="src\FlexECS\scene.inl">
+      <Filter>src\FlexECS</Filter>
+    </None>
   </ItemGroup>
 </Project>

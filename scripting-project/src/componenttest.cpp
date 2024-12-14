@@ -1,7 +1,6 @@
 #include "iscript.h"
 #include "scriptregistry.h"
 
-#include "intmanager.h"
 #include "components.h"
 #include "Reflection/base.h"
 using namespace FlexEngine;

@@ -22,6 +22,7 @@
     <ClInclude Include="src\application.h" />
     <ClInclude Include="src\components.h" />
     <ClInclude Include="src\entrypoint.h" />
+    <ClInclude Include="src\FlexECS\datastructures.h" />
     <ClInclude Include="src\flx_api.h" />
     <ClInclude Include="src\intmanager.h" />
     <ClInclude Include="src\iscript.h" />
@@ -31,9 +32,16 @@
   <ItemGroup>
     <ClCompile Include="src\application.cpp" />
     <ClCompile Include="src\components.cpp" />
+    <ClCompile Include="src\FlexECS\datastructures.cpp" />
+    <ClCompile Include="src\FlexECS\entity.cpp" />
+    <ClCompile Include="src\FlexECS\scene.cpp" />
     <ClCompile Include="src\intmanager.cpp" />
     <ClCompile Include="src\Reflection\primitives.cpp" />
     <ClCompile Include="src\scriptregistry.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\FlexECS\entity.inl" />
+    <None Include="src\FlexECS\scene.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
