@@ -6,7 +6,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\testscript.cpp">
+    <ClCompile Include="src\intmanagertest.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\componenttest.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

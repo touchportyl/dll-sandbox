@@ -1,5 +1,6 @@
 #include "entrypoint.h"
 
+#include "scriptregistry.h"
 #include "intmanager.h"
 
 #include <windows.h>
@@ -25,17 +26,29 @@ public:
       return;
     }
 
-    FunctionType myFunction = (FunctionType)GetProcAddress(hModule, "Start");
-    if (!myFunction)
+    auto& scripts = ScriptRegistry::GetScripts();
+    for (auto* script : scripts)
     {
-      std::cout << "Failed to locate the function in the DLL." << std::endl;
-      FreeLibrary(hModule);
-      return;
+      std::cout << "Running script: " << script->GetName() << std::endl;
+      script->Start();
     }
 
-    std::cout << "Calling the function in the DLL..." << std::endl;
-    myFunction();
-    std::cout << "Function call completed." << std::endl;
+    for (auto* script : scripts)
+    {
+      script->Stop();
+    }
+
+    //FunctionType myFunction = (FunctionType)GetProcAddress(hModule, "Start");
+    //if (!myFunction)
+    //{
+    //  std::cout << "Failed to locate the function in the DLL." << std::endl;
+    //  FreeLibrary(hModule);
+    //  return;
+    //}
+    //
+    //std::cout << "Calling the function in the DLL..." << std::endl;
+    //myFunction();
+    //std::cout << "Function call completed." << std::endl;
   }
 
   ~CustomApp()

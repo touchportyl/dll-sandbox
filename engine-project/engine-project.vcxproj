@@ -20,13 +20,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h" />
+    <ClInclude Include="src\components.h" />
     <ClInclude Include="src\entrypoint.h" />
     <ClInclude Include="src\flx_api.h" />
     <ClInclude Include="src\intmanager.h" />
+    <ClInclude Include="src\iscript.h" />
+    <ClInclude Include="src\Reflection\base.h" />
+    <ClInclude Include="src\scriptregistry.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp" />
+    <ClCompile Include="src\components.cpp" />
     <ClCompile Include="src\intmanager.cpp" />
+    <ClCompile Include="src\Reflection\primitives.cpp" />
+    <ClCompile Include="src\scriptregistry.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -34,7 +41,7 @@
     <ProjectGuid>{557faf8f-e565-4806-9b5c-9da1c804a225}</ProjectGuid>
     <RootNamespace>dllsandbox</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>dll-project</ProjectName>
+    <ProjectName>engine-project</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -81,6 +88,12 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(SolutionDir)engine-project\src;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(SolutionDir)engine-project\src;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
