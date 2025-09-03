@@ -1,5 +1,5 @@
-#include "iscript.h"
-#include "scriptregistry.h"
+#include "FlexScripting/iscript.h"
+#include "FlexScripting/scriptregistry.h"
 
 #include "intmanager.h"
 #include "components.h"
@@ -9,11 +9,6 @@
 class IntManagerTestScript : public Script
 {
 public:
-  IntManagerTestScript()
-  {
-    ScriptRegistry::RegisterScript(this);
-  }
-
   void Start() override
   {
     std::cout << "IntManager: Start" << std::endl;
@@ -35,5 +30,4 @@ public:
   }
 };
 
-// Static instance to ensure registration
-static IntManagerTestScript IntManagerTest;
+REGISTER_SCRIPT(IntManagerTestScript);

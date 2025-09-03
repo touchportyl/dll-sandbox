@@ -18,7 +18,7 @@ int main(int, char**)
 
   FlexEngine::Application* app = FlexEngine::CreateApplication();
   app->Run();
-  delete app;
+  //delete app;
 
   return 0;
 }

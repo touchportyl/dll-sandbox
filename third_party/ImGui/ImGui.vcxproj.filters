@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="src\backends">
+      <UniqueIdentifier>{b192dc1b-d3fc-4756-9c8f-53f90e336402}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\misc">
+      <UniqueIdentifier>{44c2dcae-9371-4f53-84d0-72bfa47b86b7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\backends\imgui_impl_glfw.cpp">
+      <Filter>src\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="src\backends\imgui_impl_opengl3.cpp">
+      <Filter>src\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imgui.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imgui_demo.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imgui_draw.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imgui_tables.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imgui_widgets.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\misc\imgui_stdlib.cpp">
+      <Filter>src\misc</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\backends\imgui_impl_glfw.h">
+      <Filter>src\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="src\backends\imgui_impl_opengl3.h">
+      <Filter>src\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="src\backends\imgui_impl_opengl3_loader.h">
+      <Filter>src\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imconfig.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imgui.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imgui_internal.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imstb_rectpack.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imstb_textedit.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imstb_truetype.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\misc\imgui_stdlib.h">
+      <Filter>src\misc</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

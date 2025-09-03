@@ -10,6 +10,15 @@
     <Filter Include="src\FlexECS">
       <UniqueIdentifier>{27aae49a-e7a4-4c32-b4f1-589f29a840ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="third_party">
+      <UniqueIdentifier>{bf408b69-4755-499f-a979-4e78fb093234}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FlexScripting">
+      <UniqueIdentifier>{95493f7d-6697-405d-a986-45ef4efaccfb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utilities">
+      <UniqueIdentifier>{8bb352ba-f074-432d-a303-fe9de2443103}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\flx_api.h">
@@ -30,14 +39,26 @@
     <ClInclude Include="src\components.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\iscript.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\scriptregistry.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="src\FlexECS\datastructures.h">
       <Filter>src\FlexECS</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FlexScripting\iscript.h">
+      <Filter>src\FlexScripting</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FlexScripting\scriptregistry.h">
+      <Filter>src\FlexScripting</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utilities\file.h">
+      <Filter>src\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utilities\path.h">
+      <Filter>src\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utilities\filelist.h">
+      <Filter>src\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\flx_windows.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -53,9 +74,6 @@
     <ClCompile Include="src\components.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\scriptregistry.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\FlexECS\datastructures.cpp">
       <Filter>src\FlexECS</Filter>
     </ClCompile>
@@ -64,6 +82,21 @@
     </ClCompile>
     <ClCompile Include="src\FlexECS\scene.cpp">
       <Filter>src\FlexECS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\third_party\src\glad\glad.c">
+      <Filter>third_party</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FlexScripting\scriptregistry.cpp">
+      <Filter>src\FlexScripting</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utilities\file.cpp">
+      <Filter>src\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utilities\path.cpp">
+      <Filter>src\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utilities\filelist.cpp">
+      <Filter>src\Utilities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

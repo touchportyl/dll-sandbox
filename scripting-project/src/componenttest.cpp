@@ -1,5 +1,5 @@
-#include "iscript.h"
-#include "scriptregistry.h"
+#include "FlexScripting/iscript.h"
+#include "FlexScripting/scriptregistry.h"
 
 #include "components.h"
 #include "Reflection/base.h"
@@ -10,11 +10,6 @@ using namespace FlexEngine;
 class ComponentTestScript : public Script
 {
 public:
-  ComponentTestScript()
-  {
-    ScriptRegistry::RegisterScript(this);
-  }
-
   void Start() override
   {
     std::cout << "ComponentTest: Start" << std::endl;
@@ -40,5 +35,4 @@ public:
   }
 };
 
-// Static instance to ensure registration
-static ComponentTestScript ComponentTest;
+REGISTER_SCRIPT(ComponentTestScript);

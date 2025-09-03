@@ -19,45 +19,33 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\application.h" />
-    <ClInclude Include="src\components.h" />
-    <ClInclude Include="src\entrypoint.h" />
-    <ClInclude Include="src\FlexECS\datastructures.h" />
-    <ClInclude Include="src\FlexScripting\iscript.h" />
-    <ClInclude Include="src\FlexScripting\scriptregistry.h" />
-    <ClInclude Include="src\flx_api.h" />
-    <ClInclude Include="src\flx_windows.h" />
-    <ClInclude Include="src\intmanager.h" />
-    <ClInclude Include="src\Reflection\base.h" />
-    <ClInclude Include="src\Utilities\file.h" />
-    <ClInclude Include="src\Utilities\filelist.h" />
-    <ClInclude Include="src\Utilities\path.h" />
+    <ClCompile Include="src\backends\imgui_impl_glfw.cpp" />
+    <ClCompile Include="src\backends\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="src\imgui.cpp" />
+    <ClCompile Include="src\imgui_demo.cpp" />
+    <ClCompile Include="src\imgui_draw.cpp" />
+    <ClCompile Include="src\imgui_tables.cpp" />
+    <ClCompile Include="src\imgui_widgets.cpp" />
+    <ClCompile Include="src\misc\imgui_stdlib.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\third_party\src\glad\glad.c" />
-    <ClCompile Include="src\application.cpp" />
-    <ClCompile Include="src\components.cpp" />
-    <ClCompile Include="src\FlexECS\datastructures.cpp" />
-    <ClCompile Include="src\FlexECS\entity.cpp" />
-    <ClCompile Include="src\FlexECS\scene.cpp" />
-    <ClCompile Include="src\FlexScripting\scriptregistry.cpp" />
-    <ClCompile Include="src\intmanager.cpp" />
-    <ClCompile Include="src\Reflection\primitives.cpp" />
-    <ClCompile Include="src\Utilities\file.cpp" />
-    <ClCompile Include="src\Utilities\filelist.cpp" />
-    <ClCompile Include="src\Utilities\path.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="src\FlexECS\entity.inl" />
-    <None Include="src\FlexECS\scene.inl" />
+    <ClInclude Include="src\backends\imgui_impl_glfw.h" />
+    <ClInclude Include="src\backends\imgui_impl_opengl3.h" />
+    <ClInclude Include="src\backends\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="src\imconfig.h" />
+    <ClInclude Include="src\imgui.h" />
+    <ClInclude Include="src\imgui_internal.h" />
+    <ClInclude Include="src\imstb_rectpack.h" />
+    <ClInclude Include="src\imstb_textedit.h" />
+    <ClInclude Include="src\imstb_truetype.h" />
+    <ClInclude Include="src\misc\imgui_stdlib.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{557faf8f-e565-4806-9b5c-9da1c804a225}</ProjectGuid>
-    <RootNamespace>dllsandbox</RootNamespace>
+    <ProjectGuid>{109ea810-6b3c-4660-baa8-29590973839b}</ProjectGuid>
+    <RootNamespace>ImGui</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>engine-project</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -74,13 +62,13 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -105,12 +93,15 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)engine-project\src;$(SolutionDir)third_party\inc;$(SolutionDir)third_party\ImGui\src;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)third_party\lib\GLFW;$(SolutionDir)third_party\lib\ImGui;$(LibraryPath)</LibraryPath>
+    <TargetName>$(ProjectName)d</TargetName>
+    <IncludePath>$(SolutionDir)third_party\ImGui\src;$(SolutionDir)third_party\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)third_party\lib\GLFW;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)third_party\lib\ImGui</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)engine-project\src;$(SolutionDir)third_party\inc;$(SolutionDir)third_party\ImGui\src;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)third_party\ImGui\src;$(SolutionDir)third_party\inc;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)third_party\lib\GLFW;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)third_party\lib\ImGui</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -142,28 +133,31 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>FLX_BUILD_DLL;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>IMGUI_EXPORT;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;Imguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>libcmtd.lib;libcmt.lib;msvcrt.lib</IgnoreSpecificDefaultLibraries>
     </Link>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>FLX_BUILD_DLL;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>IMGUI_EXPORT;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -171,7 +165,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;Imgui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>libcmtd.lib;libcmt.lib;msvcrtd.lib</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

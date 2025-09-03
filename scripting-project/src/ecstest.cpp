@@ -1,5 +1,5 @@
-#include "iscript.h"
-#include "scriptregistry.h"
+#include "FlexScripting/iscript.h"
+#include "FlexScripting/scriptregistry.h"
 
 #include "FlexECS/datastructures.h"
 using namespace FlexEngine::FlexECS;
@@ -11,11 +11,6 @@ using namespace FlexEngine::FlexECS;
 class ECSTestScript : public Script
 {
 public:
-  ECSTestScript()
-  {
-    ScriptRegistry::RegisterScript(this);
-  }
-
   void Start() override
   {
     std::cout << "ECSTest: Start" << std::endl;
@@ -43,5 +38,4 @@ public:
   }
 };
 
-// Static instance to ensure registration
-static ECSTestScript ECSTest;
+REGISTER_SCRIPT(ECSTestScript);
