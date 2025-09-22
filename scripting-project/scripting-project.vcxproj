@@ -22,6 +22,7 @@
     <ClCompile Include="src\componenttest.cpp" />
     <ClCompile Include="src\ecstest.cpp" />
     <ClCompile Include="src\intmanagertest.cpp" />
+    <ClCompile Include="src\script.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

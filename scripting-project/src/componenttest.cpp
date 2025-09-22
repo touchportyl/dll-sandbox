@@ -38,5 +38,3 @@ public:
 };
 
 REGISTER_SCRIPT(ComponentTestScript);
-
-static registered<ComponentTestScript> Register("ComponentTestScript");

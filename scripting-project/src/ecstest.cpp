@@ -41,4 +41,3 @@ public:
 };
 
 REGISTER_SCRIPT(ECSTestScript);
-static registered<ECSTestScript> Register("ECSTestScript");

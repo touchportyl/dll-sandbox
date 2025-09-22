@@ -23,6 +23,7 @@
     <ClInclude Include="src\components.h" />
     <ClInclude Include="src\entrypoint.h" />
     <ClInclude Include="src\FlexECS\datastructures.h" />
+    <ClInclude Include="src\FlexScripting\engineinterface.h" />
     <ClInclude Include="src\FlexScripting\iscript.h" />
     <ClInclude Include="src\FlexScripting\scriptregistry.h" />
     <ClInclude Include="src\flx_api.h" />

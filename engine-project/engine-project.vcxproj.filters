@@ -60,6 +60,9 @@
     <ClInclude Include="src\flx_windows.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\FlexScripting\engineinterface.h">
+      <Filter>src\FlexScripting</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\intmanager.cpp">

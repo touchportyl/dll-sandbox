@@ -33,15 +33,3 @@ public:
 public:
   static void ChangeValue(int value);
 };
-
-
-class flex_interface_impl : public flex_interface
-{
-  void CreateEntity(void) override
-  {
-
-  }
-
-};
-
-inline flex_interface_impl g_flex_interface;

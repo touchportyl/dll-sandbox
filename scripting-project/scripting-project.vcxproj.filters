@@ -15,5 +15,8 @@
     <ClCompile Include="src\ecstest.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\script.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

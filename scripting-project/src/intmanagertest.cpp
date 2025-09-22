@@ -33,9 +33,3 @@ public:
 };
 
 REGISTER_SCRIPT(IntManagerTestScript);
-static registered<IntManagerTestScript> Register("IntManagerTestScript");
-
-extern "C"
-{
-  __declspec(dllexport) void*  get_scripts() { return register_base::m_pHead; }
-}
