@@ -9,6 +9,8 @@
 class IntManagerTestScript : public Script
 {
 public:
+  using Script::Script;
+
   void Start() override
   {
     std::cout << "IntManager: Start" << std::endl;
@@ -31,3 +33,9 @@ public:
 };
 
 REGISTER_SCRIPT(IntManagerTestScript);
+static registered<IntManagerTestScript> Register("IntManagerTestScript");
+
+extern "C"
+{
+  __declspec(dllexport) void*  get_scripts() { return register_base::m_pHead; }
+}

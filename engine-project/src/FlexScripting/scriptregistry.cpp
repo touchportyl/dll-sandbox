@@ -1,24 +1,27 @@
 #include "scriptregistry.h"
 
 #include <iostream>
+#include <cassert>
 
 // Internal storage
-std::unordered_map<std::string, ScriptFactory>& ScriptRegistry::Factories()
+std::unordered_map<std::string, ScriptFactory*>& ScriptRegistry::Factories()
 {
-  static std::unordered_map<std::string, ScriptFactory> f;
+  static std::unordered_map<std::string, ScriptFactory*> f;
   return f;
 }
 
-void ScriptRegistry::RegisterFactory(const char* name, ScriptFactory fn)
+void ScriptRegistry::RegisterFactory(const char* name, ScriptFactory* fn)
 {
   Factories()[name] = fn;
 }
 
-Script* ScriptRegistry::Create(const std::string& name)
+script_interface* ScriptRegistry::Create(flex_interface& Flex, const std::string& name)
 {
   auto it = Factories().find(name);
   if (it != Factories().end())
-    return it->second();
+  {
+    return &(it->second)(Flex);
+  }
   return nullptr;
 }
 
@@ -39,6 +42,42 @@ void ScriptRegistry::ListAll()
 {
   for (auto& kv : Factories())
     std::cout << "Registered script: " << kv.first << "\n";
+}
+
+namespace ScriptReg
+{
+  script_interface* Create(flex_interface& Flex, const std::string& name)
+  {
+    auto it = FactoriesV2.find(name);
+    if (it != FactoriesV2.end())
+    {
+      return &(it->second->Create(Flex));
+    }
+    return nullptr;
+  }
+
+  void RegisterAllScripts(HMODULE hModule)
+  {
+    using type = register_base * (void);
+
+    // Get the get_scripts function
+    auto pFunc = reinterpret_cast<type*>(GetProcAddress(hModule, "get_scripts"));
+    if( pFunc == nullptr)
+    {
+      printf("Error: get_scripts function not found in the DLL.\n");
+      return;
+    }
+
+    FactoriesV2.clear();
+    for (auto p = pFunc(); p != nullptr; p = p->m_pNext)
+    {
+      printf("Adding Script %s\n", p->m_pName);
+      auto it = FactoriesV2.find(std::string(p->m_pName));
+      assert(it == FactoriesV2.end() && "Duplicate script name in registration!");
+      FactoriesV2[p->m_pName] = p;
+    }
+  }
+
 }
 
 void ScriptRegistry::RegisterAllScripts(HMODULE hModule)

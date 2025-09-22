@@ -11,6 +11,8 @@ using namespace FlexEngine::FlexECS;
 class ECSTestScript : public Script
 {
 public:
+  using Script::Script;
+
   void Start() override
   {
     std::cout << "ECSTest: Start" << std::endl;
@@ -39,3 +41,4 @@ public:
 };
 
 REGISTER_SCRIPT(ECSTestScript);
+static registered<ECSTestScript> Register("ECSTestScript");

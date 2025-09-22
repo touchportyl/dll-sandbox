@@ -12,6 +12,7 @@
 
 #include "FlexScripting/scriptregistry.h"
 #include "Utilities/filelist.h"
+#include "intmanager.h"
 
 #include <iostream>
 
@@ -23,7 +24,7 @@ namespace FlexEngine
   std::string devenvpath = "E:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.com";
   Path m_scriptingslnpath;
   std::string selectedScriptName = "";
-  Script* runningScript = nullptr;
+  script_interface* runningScript = nullptr;
 
   Application::Application()
   {
@@ -370,7 +371,9 @@ namespace FlexEngine
                   }
                   else
                   {
-                    ScriptRegistry::RegisterAllScripts(hModule);
+                    //ScriptRegistry::RegisterAllScripts(hModule);
+                    ScriptReg::RegisterAllScripts(hModule);
+
                     std::cout << "scripting-project.dll loaded successfully." << std::endl;
                   }
                 }
@@ -402,7 +405,7 @@ namespace FlexEngine
               runningScript = nullptr;
 
               // create new script instance
-              runningScript = ScriptRegistry::Create(name);
+              runningScript = ScriptRegistry::Create(g_flex_interface, name);
               if (runningScript)
               {
                 // runningScript->Start(); // auto-run when selected

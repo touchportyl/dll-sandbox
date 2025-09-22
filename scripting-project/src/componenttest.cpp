@@ -10,6 +10,8 @@ using namespace FlexEngine;
 class ComponentTestScript : public Script
 {
 public:
+  using Script::Script;
+
   void Start() override
   {
     std::cout << "ComponentTest: Start" << std::endl;
@@ -36,3 +38,5 @@ public:
 };
 
 REGISTER_SCRIPT(ComponentTestScript);
+
+static registered<ComponentTestScript> Register("ComponentTestScript");
