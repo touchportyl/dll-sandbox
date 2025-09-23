@@ -10,6 +10,7 @@ class IntManagerTestScript : public Script
 {
 public:
   using Script::Script;
+  std::string GetName() const override { return "IntManagerTest"; }
 
   void Start() override
   {
@@ -24,11 +25,6 @@ public:
   void Stop() override
   {
     std::cout << "IntManagerTest: Stop" << std::endl;
-  }
-
-  std::string GetName() const override
-  {
-    return "IntManagerTest";
   }
 };
 

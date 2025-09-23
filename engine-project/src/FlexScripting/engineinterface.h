@@ -2,9 +2,9 @@
 
 #include "iscript.h"
 
-// Implementation of flex_interface
+// Implementation of EngineInterface
 // Any functions that scripts need to call to interact with the engine should be added here
-class flex_interface_impl : public flex_interface
+class EngineInterfaceImplementation : public EngineInterface
 {
   void CreateEntity(void) override
   {
@@ -13,4 +13,4 @@ class flex_interface_impl : public flex_interface
 
 };
 
-inline flex_interface_impl g_flex_interface;
+inline EngineInterfaceImplementation g_engine_interface_implementation;

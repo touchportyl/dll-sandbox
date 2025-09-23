@@ -11,8 +11,8 @@
 #include <backends/imgui_impl_opengl3.h>
 
 #include "FlexScripting/scriptregistry.h"
+#include "FlexScripting/engineinterface.h"
 #include "Utilities/filelist.h"
-#include "intmanager.h"
 
 #include <iostream>
 
@@ -24,7 +24,7 @@ namespace FlexEngine
   std::string devenvpath = "E:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.com";
   Path m_scriptingslnpath;
   std::string selectedScriptName = "";
-  script_interface* runningScript = nullptr;
+  IScriptBase* runningScript = nullptr;
 
   Application::Application()
   {
@@ -172,7 +172,7 @@ namespace FlexEngine
                 delete runningScript;
                 runningScript = nullptr;
               }
-              ScriptRegistry::Clear(); // Clear the old registry
+              ScriptRegistry::ClearFactories(); // Clear the old registry
               FreeLibrary(hModule);
               hModule = NULL;
               selectedScriptName = "";
@@ -214,7 +214,7 @@ namespace FlexEngine
                   delete runningScript;
                   runningScript = nullptr;
                 }
-                ScriptRegistry::Clear();
+                ScriptRegistry::ClearFactories();
                 FreeLibrary(hModule);
                 hModule = NULL;
                 selectedScriptName = "";
@@ -280,7 +280,7 @@ namespace FlexEngine
               {
                 std::cout << "scripting-project.dll unloaded successfully." << std::endl;
                 hModule = NULL;
-                ScriptRegistry::Clear();
+                ScriptRegistry::ClearFactories();
                 selectedScriptName = "";
               }
               else
@@ -311,7 +311,7 @@ namespace FlexEngine
                 delete runningScript;
                 runningScript = nullptr;
               }
-              ScriptRegistry::Clear(); // Clear the old registry
+              ScriptRegistry::ClearFactories(); // Clear the old registry
               FreeLibrary(hModule);
               hModule = NULL;
               selectedScriptName = "";
@@ -371,9 +371,7 @@ namespace FlexEngine
                   }
                   else
                   {
-                    //ScriptRegistry::RegisterAllScripts(hModule);
-                    ScriptReg::RegisterAllScripts(hModule);
-
+                    ScriptRegistry::RegisterAllScripts(hModule);
                     std::cout << "scripting-project.dll loaded successfully." << std::endl;
                   }
                 }
@@ -405,7 +403,7 @@ namespace FlexEngine
               runningScript = nullptr;
 
               // create new script instance
-              runningScript = ScriptRegistry::Create(g_flex_interface, name);
+              runningScript = ScriptRegistry::Create(g_engine_interface_implementation, name);
               if (runningScript)
               {
                 // runningScript->Start(); // auto-run when selected
